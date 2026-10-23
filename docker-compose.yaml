@@ -1,0 +1,29 @@
+# TrueNAS SCALE: Apps -> Discover Apps -> ⋮ -> Install via YAML. Replace <pool> and the token.
+# Image is built by GitHub Actions (.github/workflows/docker.yml) and pulled from GHCR.
+services:
+  text-adventure:
+    image: ghcr.io/usedillusion/text-adventure:latest
+    pull_policy: always
+    container_name: discord-text-adventure
+    restart: unless-stopped
+    user: "568:568"
+    environment:
+      DISCORD_TOKEN: "paste-your-bot-token-here"
+      GAMES_DIR: /data/games
+      SAVES_DIR: /data/saves
+      COMMAND_PREFIX: ">"          # "" = every message in a game thread is a command
+      GUILD_ID: ""                 # your server ID for instant slash-command sync
+      SESSION_IDLE_MINUTES: "30"
+      USE_THREADS: "true"
+      TZ: Europe/London
+    volumes:
+      - /mnt/<pool>/apps/text-adventure/games:/data/games
+      - /mnt/<pool>/apps/text-adventure/saves:/data/saves
+    security_opt: [no-new-privileges:true]
+    cap_drop: [ALL]
+    mem_limit: 256m
+    # Optional auto-update: add Watchtower as a separate app, or label-scope it:
+    # labels:
+    #   com.centurylinklabs.watchtower.enable: "true"
+    # (Watchtower: image containrrr/watchtower, mount /var/run/docker.sock,
+    #  command "--label-enable --cleanup --interval 3600")

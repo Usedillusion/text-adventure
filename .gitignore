@@ -1,0 +1,4 @@
+games/
+saves/
+.env
+__pycache__/
