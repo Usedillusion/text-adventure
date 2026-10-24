@@ -1,0 +1,59 @@
+# Original hints for Suspect (Infocom, 1984). Room names checked against the story file.
+# The status line shows the sub-area name (e.g. "Near Bar") inside the ballroom.
+game: Suspect
+aliases:
+  near fireplace: near bar
+  near french door: near bar
+  dance floor: near bar
+  center entrance: near bar
+  near kitchen: near bar
+  near band: near bar
+  north entrance: near bar
+  south entrance: near bar
+  ballroom: near bar
+  west of garage: garage
+  north of house: outside house
+  west of house: outside house
+  circular driveway: outside house
+  front porch: outside house
+  covered walkway: outside house
+  media room: office
+  sitting room: living room
+  morning room: living room
+general:
+  - You're a reporter at a costume party, and you'll soon be framed for murder. Your task is to find out who did it, and prove it.
+  - Talk to everyone. ASK <person> ABOUT <thing> and SHOW <item> TO <person> are your main tools.
+  - Time matters. People move about, and evidence can be moved or lost. Use WAIT and FOLLOW <person> to watch them.
+  - You need physical evidence and a motive. Accusing someone without both gets you nowhere.
+rooms:
+  near bar:
+    - Enjoy the party, but keep an eye on your hostess and who she's talking to.
+    - Watch where people go. Someone will slip away, and following them could be useful.
+    - "Note who leaves the ballroom and when. Then ASK people where they were."
+  office:
+    - The crime scene. Look at everything closely, including the body, the furniture, and anything unusual about the costume.
+    - Something here doesn't fit the official story of how it happened.
+    - "||EXAMINE every object (and the body) and note anything that suggests the scene was staged. Show what you find to the detective, Sergeant Duffy.||"
+  garage:
+    - Vehicles and their contents can say a lot about their owners.
+    - "||OPEN the car trunks and search them. Look for anything that links a guest to the murder.||"
+  barn:
+    - Out of the way, which makes it a good spot to hide things.
+  garden:
+    - Outside the house it's dark and cold. Look for traces.
+  pond:
+    - Water is a good place to get rid of evidence.
+  outside house:
+    - The grounds are large. Search them methodically.
+  kitchen:
+    - The staff see a lot. Talk to them.
+  library:
+    - Books and papers may reveal motives, such as debts, deals or affairs.
+  living room:
+    - Guests drift in and out. Overhear what they say.
+  dining room:
+    - Look around when it's quiet.
+  back porch:
+    - A back way in and out. Who used it?
+  patio:
+    - Doors to the ballroom. Who came through here?

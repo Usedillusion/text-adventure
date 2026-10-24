@@ -1,0 +1,94 @@
+# Original hints for Starcross (Infocom, 1982). Room names checked against the story file.
+game: Starcross
+aliases:
+  control room: living quarters
+  computer room: living quarters
+  cargo hold: living quarters
+  garage: airlock
+  outside ship: airlock
+  among debris: airlock
+  floating in space: airlock
+  umbilical: airlock
+  red hall: red dock
+  red airlock: red dock
+  blue hall: blue dock
+  blue airlock: blue dock
+  green hall: green dock
+  green airlock: green dock
+  yellow hall: yellow dock
+  yellow airlock: yellow dock
+  drive bubble: drive bubble entrance
+  on drive bubble: drive bubble entrance
+  control bubble: control bubble entrance
+  on control bubble: control bubble entrance
+  thin forest: village center
+  dense forest: village center
+  grassland: village center
+  outskirts of village: village center
+  village suburbs: village center
+  up a tree: base of tree
+  top of tree: base of tree
+  in the warren: center of the warren
+  nesting cage: zoo
+  broken cage: zoo
+  inside grue cage: zoo
+  room on ring one: observatory
+  room on ring two: observatory
+  room on ring four: observatory
+  floating in air: weapons deck
+  bubbles: laboratory
+general:
+  - You're a black hole miner who has found a huge alien artifact. The puzzle is getting inside and working out what it wants.
+  - The ship's computer and mass detector give you coordinates. Read them, then use the computer to travel.
+  - Inside the artifact, coloured rods and discs open matching coloured areas. Collect every one you find.
+  - Air, gravity and orientation change between areas. Read descriptions carefully, and use your spacesuit when you need it.
+rooms:
+  living quarters:
+    - Your detector is sounding an alarm. Get up and find out why.
+    - The ship's computer can take you to the object's coordinates if you tell it how.
+    - "||GET UP, go to the Control Room, read the mass detector's display, and give the computer those coordinates (the computer accepts commands along the lines of COMPUTER, R/... ...). Then wait for the rendezvous.||"
+  airlock:
+    - Suit up before going outside. Your ship can link up with the artifact.
+    - Look around the outside of the alien ship for a way in. Something on its surface responds to visitors.
+  red dock:
+    - Each coloured dock matches a rod or disc. The Red Hall leads deeper into the artifact.
+  blue dock:
+    - The Blue area has its own puzzle. Do you have a blue item?
+  green dock:
+    - The Green area has its own puzzle. Do you have a green item?
+  yellow dock:
+    - The Yellow area has its own puzzle. Do you have a yellow item?
+  village center:
+    - The natives of this inner world can be bargained with. Watch what they value.
+  base of tree:
+    - Climbing up gives a view, and maybe something that's been carried up there.
+  center of the warren:
+    - The warren creatures are shy. Give them a reason to trust you, or something they want.
+  zoo:
+    - The cages hold specimens from many worlds. Some are dangerous and some are useful.
+  observatory:
+    - The rings around the artifact turn. Observe, and work out the pattern.
+  weapons deck:
+    - Dangerous equipment. Only use it if you know what you're aiming at.
+  laboratory:
+    - Strange experiments. Look for something that can repair or reveal.
+  repair room:
+    - A robot or mechanism here may fix things for you if you supply the parts.
+  drive bubble entrance:
+    - The drive controls the artifact's movement. You need to enter it.
+  control bubble entrance:
+    - The final goal is the control bubble. You need every key, in the right colours.
+  bridge:
+    - The artifact's command centre. Everything you've collected comes together here.
+  spherical ship:
+    - Another visitor's ship. Search it.
+  mars:
+    - A strange simulation. Look for a way to interact rather than just observe.
+  storage:
+    - Search everything.
+  guard room:
+    - Something guards this area. Find out what it reacts to.
+  melted spot:
+    - Something tremendously hot has been here. Look for what caused it.
+  fore end:
+    - One end of the artifact's long axis. Check for hatches.

@@ -1,0 +1,72 @@
+# Original hints for The Hitchhiker's Guide to the Galaxy (Infocom, 1984).
+# Room names checked against the story file. Later-game hints are deliberately vaguer.
+game: The Hitchhiker's Guide to the Galaxy
+aliases:
+  back of house: front of house
+  corridor, aft end: entry bay number two
+  corridor, fore end: entry bay number two
+  hatchway: engine room
+  access space: engine room
+  beast's outer lair: lair
+  inner lair: lair
+general:
+  - This game is deliberately unfair. Save often, especially before anything time-sensitive.
+  - Pick up everything, even junk. Most items have one oddly specific use later.
+  - When you're in total darkness, try your other senses (LISTEN, SMELL, FEEL).
+  - If the game says "You'll need it later", believe it. Some items can't be recovered once lost.
+rooms:
+  bedroom:
+    - It's the worst day of your life and you have a hangover. Start with the basics, like light.
+    - Your dressing gown has something useful in its pocket.
+    - "||TURN ON LIGHT, GET UP, GET GOWN, WEAR GOWN, OPEN POCKET, TAKE ALL FROM POCKET (the analgesic helps), then go SOUTH.||"
+  front porch:
+    - Your post has arrived. It may not look important.
+    - "||TAKE MAIL (the junk mail is part of a later puzzle), then go SOUTH.||"
+  front of house:
+    - A bulldozer wants your house. Resisting peacefully buys you time.
+    - Stay put until your friend Ford finds a way to get you free.
+    - "||LIE DOWN in front of the bulldozer and WAIT. Ford talks Mr. Prosser into taking your place. Once you're free, follow Ford SOUTH, then WEST to the pub.||"
+  country lane:
+    - A hungry animal is around here. Kindness to animals tends to pay off in this game.
+    - "||If you've bought a sandwich at the pub, GIVE SANDWICH TO DOG.||"
+  pub:
+    - Ford insists you drink. It's rude to refuse a friend at the end of the world.
+    - "||DRINK BEER three times and BUY SANDWICH. Then keep near Ford when the yellow ships arrive. He's your only ride off the planet.||"
+  dark:
+    - You can't see anything. Use your other senses, and be patient.
+    - "||Try LISTEN and SMELL, and EXAMINE what you sense. Waiting and paying attention gets you through these scenes.||"
+  vogon hold:
+    - The Babel fish dispenser is clearly the key here. Press its button and watch exactly where the fish goes.
+    - The fish escapes in a different direction each time. Each escape route can be blocked with something you're carrying.
+    - "Look at the hook, the wall hole, the drain, the robot's panel, and the little robot that sweeps up afterwards. You need one item for each."
+    - "||HANG GOWN ON HOOK (covers the hole), PUT TOWEL OVER DRAIN, PUT SATCHEL IN FRONT OF PANEL (stops the robot), PUT MAIL ON SATCHEL (catches the fish mid-air). Then PUSH DISPENSER BUTTON. The fish lands in your ear. If you've lost one of the items, you need to restore an earlier save.||"
+  captain's quarters:
+    - The Vogon Captain is about to read his poetry. Surviving it is less about endurance than attitude.
+    - "||When he asks, praise the poetry (ENJOY POETRY), however much it hurts. It won't save you from the airlock, but it scores and keeps the story going.||"
+  airlock:
+    - Being thrown out of an airlock isn't the end in this universe. Improbable things happen.
+    - "||Just WAIT. You're rescued by the Heart of Gold.||"
+  entry bay number two:
+    - You're aboard the Heart of Gold. Talk to the crew and explore every room. The Guide has entries about most things here.
+  bridge:
+    - The ship's improbability features are central to the rest of the game. Pay attention to what the crew want.
+    - Getting a proper cup of tea is surprisingly important. It powers a key piece of equipment.
+  galley:
+    - "The Nutrimat makes something almost, but not quite, entirely unlike tea."
+    - It needs convincing, and some of what it needs comes from other parts of the story.
+  nutrimat/computer interface:
+    - The machine wants a better understanding of tea. You may have to explain it in a roundabout way.
+  lair:
+    - The Ravenous Bugblatter Beast of Traal is famously stupid. Your towel has many uses.
+    - "If it can't see you, it assumes you can't see it."
+    - "||WRAP TOWEL AROUND HEAD. Then carve or write your name on the memorial as you leave.||"
+  war chamber:
+    - A war is about to start over a tiny misunderstanding. Think about what started it, and who could prevent it.
+  inside the sperm whale:
+    - "Not a good place to stay. Look for anything useful that's come along with you."
+  damogran:
+    - Something is about to be stolen here. Stay close to whoever's at the centre of it.
+  maze:
+    - "Record your path. It may be shorter than it looks."
+  engine room:
+    - The drive needs a proper power source before it'll do much.

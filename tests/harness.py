@@ -80,7 +80,7 @@ async def hint_tests(games, root) -> None:
     assert db.lookup("zork1", "Frigid River, in the magic boat")[2]
     h, lv, sp = db.lookup("zork1", "Nowhere Special"); assert not sp and lv and "general" in h
     assert not db.lookup("nosuchgame", "x")[2]
-    for g in ("zork1", "zork2", "zork3", "advent"):
+    for g in sorted(f.stem for f in BUNDLED.glob("*.yaml")):
         d = db._load(g); assert d["general"], g
         for k, v in d["aliases"].items(): assert v in d["rooms"], (g, k, v)
         print(f"  {g}: {len(d['rooms'])} rooms, {len(d['general'])} general hints")

@@ -1,0 +1,80 @@
+# Original hints for Leather Goddesses of Phobos (Infocom, 1986). Room names checked against the story file.
+# Many puzzles are free-form, so hints stay fairly general.
+game: Leather Goddesses of Phobos
+aliases:
+  gents' room: ladies' room
+  cell: other cell
+  ladder room: other cell
+  hold: space yacht
+  in space: space yacht
+  at main hatch: space yacht
+  cramped space: space yacht
+  martian desert: among the dunes
+  dunetop: among the dunes
+  oasis: among the dunes
+  martian dessert: among the dunes
+  harem: inner harem
+  audience chamber: throne room
+  main hall of palace: throne room
+  edge of polar ice cap: south pole
+  penguin park: south pole
+  icy dock: south pole
+  wattz-upp dock: martian canal
+  donald dock: martian canal
+  baby dock: martian canal
+  hickory & dickory dock: martian canal
+  abandoned dock: martian canal
+  my kinda dock!: martian canal
+  royal docks: martian canal
+  base of tower: minaret
+  roof: minaret
+general:
+  - You've been kidnapped to Phobos, and a Super-Duper anti-goddess attack machine needs building. Its parts are scattered across the solar system.
+  - Keep a list of the odd household items people mention. Each one is a machine part.
+  - Your companion (Trent or Tiffany) is useful and sometimes needs rescuing.
+  - Teleportation is done with the black circles. Touch a circle to travel, and note where each one goes.
+rooms:
+  joe's bar:
+    - You've had a few. You really need the facilities, and which ones you choose matters.
+    - "||Go into the LADIES' ROOM or the GENTS' ROOM. That choice sets your character's gender for the rest of the game.||"
+  ladies' room:
+    - "Your choice of room has been noted. Things are about to get strange."
+  other cell:
+    - You're imprisoned. Your cellmate is friendly and may have ideas.
+    - Look closely at the cell and at whatever you were given.
+  space yacht:
+    - "A ship in space: explore it carefully and watch your air."
+  among the dunes:
+    - The desert is easy to get lost in. Look for landmarks, and keep water in mind.
+  martian canal:
+    - The canal links several docks. A boat would help.
+  south pole:
+    - Freezing. Penguins and ice. Look for something to keep warm, and for items to collect.
+  inner harem:
+    - A dangerous place to be caught. Act quickly and look for an exit.
+  throne room:
+    - Royalty can be bargained with, or tricked.
+  cleveland:
+    - An unexpected visit to Ohio. There's an item here too.
+  canalview mall:
+    - Shops sell things you may need. Bring money or trade goods.
+  catacombs:
+    - Dark and twisty. Map it, and watch for things that move.
+  laboratory:
+    - The machine's plans and assembly happen here, once you have every part.
+  ruined castle:
+    - A castle in ruins. Explore every corner and bring light.
+  gypsy camp:
+    - Fortunes and bargains. Listen carefully.
+  jungle:
+    - Dense jungle. Avoid anything with big teeth, plants included.
+  burial chamber:
+    - Ancient tombs often hold the oddest machine parts.
+  clearing:
+    - A quiet spot. Look around properly.
+  teensy-weensy house:
+    - Sometimes size matters. Look for a way to change yours.
+  orphanage foyer:
+    - Children and orphans. Be kind and pay attention.
+  minaret:
+    - Up high. Good views, and possibly a way down that isn't the stairs.

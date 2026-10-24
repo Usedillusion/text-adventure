@@ -1,0 +1,76 @@
+# Original hints for The Lurking Horror (Infocom, 1987). Room names checked against the story file.
+game: The Lurking Horror
+aliases:
+  roof of great dome: on the great dome
+  top of dome: on the great dome
+  inside dome: on the great dome
+  aero basement: aero lobby
+  brown basement: brown building
+  top floor: brown building
+  skyscraper roof: brown building
+  temporary basement: temporary lab
+  wet tunnel: steam tunnel
+  muddy tunnel: steam tunnel
+  brick tunnel: steam tunnel
+  cinderblock tunnel: steam tunnel
+  tunnel entrance: steam tunnel
+  dead storage: subbasement
+  ancient storage: subbasement
+  department of alchemy: lab
+  before the altar: inner lair
+  large chamber: inner lair
+  basalt bowl: inner lair
+  at platform: inner lair
+general:
+  - It's a stormy night on campus and something is badly wrong. Read every screen, note and sign.
+  - Several items are guarded by people (a hacker, an urchin, a maintenance man). Think about what each one wants.
+  - Save before going into the tunnels or doing anything with unidentified objects.
+  - The worse things get, the closer you probably are.
+rooms:
+  terminal room:
+    - Your paper is due. Get a computer working and look at what's on it.
+    - "Your assignment sheet holds the login details."
+    - "||SIT DOWN, TURN ON PC, then TYPE 872325412 (your ID, on the assignment) and TYPE UHLERSOTH (the password). READ SCREEN to see what has turned up.||"
+  kitchen:
+    - The hacker upstairs will trade for food. There's food here, but it needs warming up.
+    - "||Take the Chinese food from the refrigerator and heat it in the microwave, then give it to the hacker in the Terminal Room. He helps you in return.||"
+  second floor:
+    - The elevator, the stairs, the kitchen and the terminal room all meet here.
+  computer center:
+    - The lobby. Smith Street outside connects to the rest of campus.
+  smith street:
+    - The storm is vicious, and you can't stay outside for long. Use the buildings.
+  infinite corridor:
+    - A long hallway joining the campus buildings. Watch who walks along it.
+    - "Someone with a useful tool passes by. Think about how to get their attention or their help."
+  temporary lab:
+    - These old wartime buildings hide more than they seem to. Search every floor, including below ground.
+  lab:
+    - "The alchemy department has been up to something. Investigate carefully, and don't touch everything bare-handed."
+  steam tunnel:
+    - The tunnels are dark, damp and confusing. Bring light, and map as you go.
+    - "Some passages are blocked by things you'll need a tool for, or things you'll need to move."
+  subbasement:
+    - Deep storage. Something here may let you open or move what you couldn't before.
+  elevator:
+    - The elevator isn't the only way to use the shaft. Look above as well as below.
+  on the great dome:
+    - Climbing the dome needs equipment and nerve. Save first.
+    - Something up here connects to the professor's experiments.
+  great dome:
+    - From here you can head up, and the climb is worth it.
+  fruits and nuts:
+    - Something in this lab is still alive. Approach carefully.
+  inner lair:
+    - This is the heart of the horror. You'll need the right items, and the right moment, to stop the ritual.
+    - Think about everything you've learned about the creature and the professor's plans.
+  brown building:
+    - A tall building. The roof is worth reaching.
+  aero lobby:
+    - Explore below this building too.
+  great court:
+    - An open court in the storm. Look for routes into other buildings.
+  chemistry building:
+    - Labs here may have chemicals or tools you need later.
+  engineering building:
+    - Another link in the chain of campus buildings.

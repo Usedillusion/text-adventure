@@ -1,0 +1,128 @@
+# Original hints for Planetfall (Infocom, 1983). Room names checked against the story file.
+game: Planetfall
+aliases:
+  deck eight: gangway
+  reactor lobby: gangway
+  brig: deck nine
+  crag: underwater
+  balcony: underwater
+  winding stair: courtyard
+  plain hall: courtyard
+  west wing: courtyard
+  machine shop: robot shop
+  tool room: robot shop
+  mess corridor: mess hall
+  kitchen: mess hall
+  dorm a: dorm corridor
+  dorm b: dorm corridor
+  dorm c: dorm corridor
+  dorm d: dorm corridor
+  sanfac a: dorm corridor
+  sanfac b: dorm corridor
+  sanfac c: dorm corridor
+  sanfac d: dorm corridor
+  shuttle car betty: shuttle car alfie
+  betty control east: shuttle car alfie
+  betty control west: shuttle car alfie
+  alfie control east: shuttle car alfie
+  alfie control west: shuttle car alfie
+  kalamontee platform: shuttle car alfie
+  lawanda platform: shuttle car alfie
+  upper elevator: elevator lobby
+  lower elevator: elevator lobby
+  bio lock east: bio lab
+  bio lock west: bio lab
+  radiation lock east: radiation lab
+  radiation lock west: radiation lab
+  lab office: main lab
+  lab storage: main lab
+  cryo-anteroom: cryo-elevator
+  booth 1: auxiliary booth
+  booth 2: auxiliary booth
+  booth 3: auxiliary booth
+  station 384: miniaturization booth
+  strip near relay: miniaturization booth
+  middle of strip: miniaturization booth
+  strip near station: miniaturization booth
+  reactor elevator: reactor control
+  reactor access stairs: reactor control
+general:
+  - You're a lowly ensign. Your ship won't last long, and nor will you without food, water and sleep.
+  - Eat and drink regularly, and sleep in a bed when you feel tired. Your illness gets worse over time, so don't waste moves.
+  - Floyd the robot is your most important companion. Turn him on and keep him with you.
+  - Key cards and access doors gate most areas. Read every sign and note the colour of each card.
+rooms:
+  deck nine:
+    - Scrubbing the deck is boring, and something big is about to happen. Be ready to move when it does.
+    - Once the explosions start, find the quickest way off the ship.
+    - "||Wait for the explosions. When the escape pod's bulkhead opens, go WEST into the Escape Pod straight away.||"
+  gangway:
+    - Don't wander too far from Deck Nine. The emergency won't wait for you.
+  escape pod:
+    - Strap in and ride it out. Once you land, don't hang around.
+    - "||Wait until the pod lands, then OPEN DOOR and leave quickly, because it's sinking. Take the survival kit with you if you can.||"
+  underwater:
+    - You're sinking with the pod. Swim for the surface.
+    - "||Go UP until you reach dry land, then climb.||"
+  courtyard:
+    - You've reached an abandoned complex. Explore systematically and map it.
+  robot shop:
+    - The dusty robot in the corner isn't broken, just switched off.
+    - "||TURN ON ROBOT. Floyd wakes up and follows you around.||"
+  mess hall:
+    - You need food and drink. A dispenser here needs a suitable container.
+    - "||Find a canteen and fill it at the dispensers (the coloured goo is food). Drink and eat when you're told you're hungry or thirsty.||"
+  dorm corridor:
+    - Sleep somewhere safe when you're tired, in a bed rather than on the floor.
+  elevator lobby:
+    - The elevators need the right access card.
+  shuttle car alfie:
+    - The shuttle connects two complexes. Activate it with the right card, then use the lever carefully.
+    - "Accelerate first, then slow down in time to stop at the far platform."
+  library:
+    - The library holds spools of information. A reader elsewhere lets you study them.
+    - "Look for a spool about the project and about what went wrong with the planet."
+  infirmary:
+    - Medical supplies. You'll need treatment before the end.
+  computer room:
+    - The central computer has a fault. You can't fix it from outside.
+    - The solution involves getting very small.
+  miniaturization booth:
+    - This booth lets you enter places too small to walk into. Use it on the computer.
+    - Inside, find what's damaged and deal with whatever is guarding it.
+  bio lab:
+    - The things in here are deadly. Never just walk in.
+    - A loyal friend may be willing to fetch something for you. Be ready for what happens next.
+  radiation lab:
+    - Radiation is dangerous. Spend as little time here as possible.
+  main lab:
+    - This lab leads to the biological and radiation areas. Check the office for cards and notes.
+  planetary defense:
+    - Some equipment here is blown. Replacement parts are around the complex, so match the type exactly.
+    - "||Find the matching megafuse (check the K-series and B-series markings) and swap it for the fried one.||"
+  course control:
+    - Same problem as Planetary Defense. Look for the burnt-out part and its replacement.
+  reactor control:
+    - The reactor area matters for power. Look but don't tamper without reason.
+  cryo-elevator:
+    - The cryogenic sleepers hold the planet's last hope. Get here once the systems are fixed.
+  comm room:
+    - The communications equipment can tell you a lot. Read the messages and look at the colours.
+  helipad:
+    - The helicopter may be your way to another area. Check whether it'll start.
+  observation deck:
+    - Look out over the planet. It gives you some context.
+  systems monitors:
+    - These panels show which systems are failing, and that's your to-do list.
+  physical plant:
+    - Machinery and supplies. Look for tools.
+  repair room:
+    - Tools and parts. Look for anything that cuts, opens or repairs.
+  tower core:
+    - The heart of the tower. Check every level.
+  storage west:
+    - Storage rooms often hold the items you need for later doors and machines.
+  storage east:
+    - Storage rooms often hold the items you need for later doors and machines.
+  auxiliary booth:
+    - These booths connect to systems elsewhere. Read the instructions on each one.
