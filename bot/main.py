@@ -120,10 +120,13 @@ async def play(inter: discord.Interaction, game: str, resume: bool | None = None
     target = inter.channel
     note = " (your previous game was closed)" if old else ""
     if cfg.use_threads and isinstance(inter.channel, discord.TextChannel):
-        await inter.response.send_message(f"{inter.user.mention} is starting **{path.stem}**{note}…")
-        msg = await inter.original_response()
-        target = await msg.create_thread(name=f"{path.stem} – {inter.user.display_name}"[:90],
-                                         auto_archive_duration=1440)
+        await inter.response.send_message(f"{inter.user.mention} is starting **{path.stem}**{note}…",
+                                          ephemeral=True)
+        target = await inter.channel.create_thread(
+            name=f"{path.stem} – {inter.user.display_name}"[:90],
+            type=discord.ChannelType.private_thread, invitable=False,
+            auto_archive_duration=1440)
+        await target.add_user(inter.user)
         bot_threads.add(target.id)
     else:
         await inter.response.defer()

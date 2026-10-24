@@ -52,7 +52,7 @@ rooms:
 2. **Bot** tab → **Reset Token** → copy it into `DISCORD_TOKEN`.
 3. Same tab → **Privileged Gateway Intents** → enable **Message Content Intent** (required to read game input).
 4. **OAuth2 → URL Generator**: scopes `bot` + `applications.commands`; permissions:
-   View Channels, Send Messages, Send Messages in Threads, Create Public Threads, Manage Threads, Read Message History.
+   View Channels, Send Messages, Send Messages in Threads, Create Private Threads, Manage Threads, Read Message History.
    Or use directly (replace CLIENT_ID):
    `https://discord.com/oauth2/authorize?client_id=CLIENT_ID&scope=bot+applications.commands&permissions=326417583104`
 5. Optional: enable Developer Mode in Discord, right-click your server → Copy Server ID → `GUILD_ID`
