@@ -20,6 +20,7 @@ class Config:
     use_threads: bool
     read_idle: float
     read_max: float
+    thread_delete_delay: int     # minutes; 0 = now, -1 = keep
 
     @classmethod
     def from_env(cls) -> "Config":
@@ -35,4 +36,5 @@ class Config:
             use_threads=_bool(os.getenv("USE_THREADS"), True),
             read_idle=float(os.getenv("READ_IDLE_SECONDS", "0.4")),
             read_max=float(os.getenv("READ_MAX_SECONDS", "8")),
+            thread_delete_delay=int(os.getenv("THREAD_DELETE_DELAY_MINUTES", "5") or 5),
         )

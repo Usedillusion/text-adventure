@@ -15,6 +15,7 @@ services:
       GUILD_ID: ""                 # your server ID for instant slash-command sync
       SESSION_IDLE_MINUTES: "30"
       USE_THREADS: "true"
+      THREAD_DELETE_DELAY_MINUTES: "5"   # 0 = immediately, -1 = keep threads
       TZ: Europe/London
       # HINTS_DIR: /data/hints     # optional custom hints (falls back to bundled)
     volumes:

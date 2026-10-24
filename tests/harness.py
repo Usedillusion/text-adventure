@@ -46,6 +46,14 @@ async def scripted(games_dir: str) -> int:
         v = mk(alice, "advent"); await v.start()
         assert "building" in (await v.send("enter building")).lower(); await v.close()
     await hint_tests(games, root)
+    # process-exit detection: quitting inside the game ends the session
+    q = mk(alice, "zork1"); await q.start()
+    o1 = await q.send("quit"); print("QUIT:", o1)
+    o2 = await q.send("y"); print("CONFIRM:", o2)
+    assert not q.alive and "[game ended]" in o2, (q.alive, o2)
+    assert await q.send("look") == "[game is not running]"
+    # death also ends it eventually? (only checked if game exits) - covered by quit path
+    await delete_logic_tests()
     print("\nALL TESTS PASSED"); return 0
 
 
@@ -81,6 +89,56 @@ async def hint_tests(games, root) -> None:
         assert a.room == "Inside Building", a.room
         assert db.lookup("advent", a.room)[2]; await a.close()
     assert detect_room(" Kitchen                       Score: 10       Moves: 5\n\nKitchen") == "Kitchen"
+
+
+async def delete_logic_tests() -> None:
+    """Exercise thread-deletion scheduling with fake Discord objects."""
+    import os
+    os.environ.setdefault("GAMES_DIR", "games")
+    import discord
+    import bot.main as m
+
+    class FakeThread(discord.Thread):
+        def __init__(self, tid, owner, forbid=False):
+            self.id, self.owner_id, self.forbid = tid, owner, forbid
+            self.sent, self.deleted, self.edits = [], False, []
+        async def send(self, t): self.sent.append(t)
+        async def delete(self):
+            if self.forbid:
+                raise discord.Forbidden(type("R", (), {"status": 403, "reason": "x"})(), "no perms")
+            self.deleted = True
+        async def edit(self, **kw): self.edits.append(kw)
+
+    me = 999
+    threads = {}
+    m.client._connection.user = type("U", (), {"id": me})()
+    m.client.get_channel = lambda cid: threads.get(cid)
+    m.sessions.clear()
+
+    def mkcfg(delay):
+        object.__setattr__(m.cfg, "thread_delete_delay", delay)
+
+    # 0 = immediate delete of a bot-created thread
+    mkcfg(0); threads[1] = FakeThread(1, me); m.bot_threads.add(1)
+    await m.schedule_thread_delete(1); await asyncio.sleep(0.05)
+    assert threads[1].deleted and "now" in threads[1].sent[0] and 1 not in m.pending_deletes
+    # thread not created by bot -> untouched
+    threads[2] = FakeThread(2, 12345)
+    await m.schedule_thread_delete(2); assert not threads[2].sent and 2 not in m.pending_deletes
+    # -1 = keep
+    mkcfg(-1); threads[3] = FakeThread(3, me); m.bot_threads.add(3)
+    await m.schedule_thread_delete(3); assert not threads[3].sent
+    # delayed delete then cancelled (owner restarted a game there)
+    mkcfg(5); threads[4] = FakeThread(4, me); m.bot_threads.add(4)
+    await m.schedule_thread_delete(4)
+    assert 4 in m.pending_deletes and "5 minutes" in threads[4].sent[0]
+    m.cancel_delete(4); await asyncio.sleep(0.05)
+    assert 4 not in m.pending_deletes and not threads[4].deleted
+    # missing Manage Threads -> archive + lock
+    mkcfg(0); threads[5] = FakeThread(5, me, forbid=True); m.bot_threads.add(5)
+    await m.schedule_thread_delete(5); await asyncio.sleep(0.05)
+    assert not threads[5].deleted and threads[5].edits == [{"archived": True, "locked": True}]
+    print("  thread-deletion logic: immediate, foreign-thread, keep(-1), cancel, no-permission fallback OK")
 
 
 async def interactive(games_dir: str, name: str):

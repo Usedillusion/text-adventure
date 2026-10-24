@@ -24,6 +24,66 @@ hint_db = default_db()
 sessions: dict[int, ZSession] = {}  # keyed by owner user id
 
 
+bot_threads: set[int] = set()            # threads this bot created this run
+pending_deletes: dict[int, asyncio.Task] = {}
+
+
+def cancel_delete(thread_id: int | None) -> None:
+    t = pending_deletes.pop(thread_id, None) if thread_id else None
+    if t:
+        t.cancel()
+        log.info("cancelled pending deletion of thread %s", thread_id)
+
+
+async def _delete_later(th: discord.Thread, delay: int) -> None:
+    try:
+        if delay > 0:
+            await asyncio.sleep(delay * 60)
+        try:
+            await th.delete()
+            log.info("deleted thread %s", th.id)
+        except discord.Forbidden:
+            log.warning("no Manage Threads permission to delete thread %s; archiving instead", th.id)
+            for kw in ({"archived": True, "locked": True}, {"archived": True}):
+                try:
+                    await th.edit(**kw); break
+                except discord.HTTPException as e:
+                    log.warning("archive %s failed: %s", kw, e)
+        except discord.NotFound:
+            pass
+    except asyncio.CancelledError:
+        raise
+    finally:
+        if pending_deletes.get(th.id) is asyncio.current_task():
+            pending_deletes.pop(th.id, None)
+            bot_threads.discard(th.id)
+
+
+async def schedule_thread_delete(channel_id: int | None) -> None:
+    delay = cfg.thread_delete_delay
+    if delay < 0 or not channel_id or channel_id not in bot_threads:
+        return
+    th = client.get_channel(channel_id)
+    if not isinstance(th, discord.Thread) or th.owner_id != client.user.id:
+        return
+    if any(x.channel_id == channel_id for x in sessions.values()):
+        return  # another game still lives here
+    cancel_delete(channel_id)
+    try:
+        await th.send("This thread will be deleted " +
+                      ("now." if delay == 0 else f"in {delay} minute{'s' if delay != 1 else ''}. "
+                       "Start a game here with /play to keep it."))
+    except discord.HTTPException:
+        pass
+    pending_deletes[channel_id] = asyncio.create_task(_delete_later(th, delay))
+
+
+async def end_session(s: ZSession) -> None:
+    """Close a session (already removed from `sessions`) and schedule its thread for deletion."""
+    await s.close()
+    await schedule_thread_delete(s.channel_id)
+
+
 async def post(ch: discord.abc.Messageable, text: str) -> None:
     for part in split_for_discord(text):
         await ch.send(part)
@@ -53,7 +113,7 @@ async def play(inter: discord.Interaction, game: str, resume: bool | None = None
     uid = inter.user.id
     old = sessions.pop(uid, None)
     if old:
-        await old.close()
+        await end_session(old)
     s = ZSession(path, Path(cfg.saves_dir) / str(uid), cfg.dfrotz_path,
                  cfg.read_idle, cfg.read_max)
     s.owner_id = uid
@@ -64,9 +124,11 @@ async def play(inter: discord.Interaction, game: str, resume: bool | None = None
         msg = await inter.original_response()
         target = await msg.create_thread(name=f"{path.stem} – {inter.user.display_name}"[:90],
                                          auto_archive_duration=1440)
+        bot_threads.add(target.id)
     else:
         await inter.response.defer()
     s.channel_id = target.id
+    cancel_delete(target.id)  # (re)starting a game in a doomed thread keeps it
     try:
         out = await s.start()
     except Exception as e:  # noqa: BLE001
@@ -105,6 +167,9 @@ def _simple(name: str, desc: str, method: str):
                                               ephemeral=True); return
         await inter.response.defer()
         out = await getattr(s, method)()
+        if not s.alive:
+            sessions.pop(inter.user.id, None)
+            await end_session(s)
         if inter.channel_id != s.channel_id:
             out = f"[{s.game_name}, in <#{s.channel_id}>]\n" + out
         await reply(inter, out)
@@ -159,8 +224,8 @@ async def quit_cmd(inter: discord.Interaction):
     s = sessions.pop(inter.user.id, None)
     if not s:
         await inter.response.send_message("You have no game running.", ephemeral=True); return
-    await s.close()
     await inter.response.send_message(f"Ended your **{s.game_name}** game. (Use /save before /quit to keep progress.)")
+    await end_session(s)
 
 
 @client.event
@@ -181,8 +246,9 @@ async def on_message(msg: discord.Message):
     async with msg.channel.typing():
         out = await s.send(content)
     await post(msg.channel, out)
-    if not s.alive:
+    if not s.alive:  # game exited (death/win/quit inside the game)
         sessions.pop(msg.author.id, None)
+        await end_session(s)
 
 
 @tasks.loop(minutes=1)
@@ -203,6 +269,7 @@ async def reaper():
                     await ch.send(f"<@{cid}> your {s.game_name} session closed due to inactivity (autosaved; /play {s.game_name} resumes it).")
                 except discord.HTTPException:
                     pass
+            await schedule_thread_delete(s.channel_id)
 
 
 @client.event

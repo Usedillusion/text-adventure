@@ -20,6 +20,14 @@ Only the owner's (prefixed) messages in that thread drive it; everyone else's ar
 Saves are tied to your Discord user ID, not the channel. You can save in one server, then `/play` the
 same game in another channel or server and carry on. Idle games are autosaved and closed after `SESSION_IDLE_MINUTES`.
 
+**Thread cleanup:** a thread the bot created is deleted when its game ends. That covers `/quit`, the idle
+timeout (after the autosave), the game finishing on its own (death, win, or `quit` typed in the game), and
+replacing the game with a new `/play`. The bot first posts "This thread will be deleted in N minutes" and deletes
+it after `THREAD_DELETE_DELAY_MINUTES` (default 5; `0` = immediately; `-1` = keep threads). Running `/play`
+in that thread before the timer runs out cancels the deletion. Threads not created by the bot are never touched.
+Without the **Manage Threads** permission the bot logs a warning and archives and locks the thread instead.
+Pending deletions are held in memory, so a container restart forgets them; delete any leftover threads by hand.
+
 ### Hints
 Hint files are `hints/<game>.yaml`, where `<game>` is the game file's name without the extension (e.g. `zork1`).
 The bundled files cover Zork I in depth, Zork II, Zork III and Adventure more lightly, all with
@@ -44,9 +52,9 @@ rooms:
 2. **Bot** tab → **Reset Token** → copy it into `DISCORD_TOKEN`.
 3. Same tab → **Privileged Gateway Intents** → enable **Message Content Intent** (required to read game input).
 4. **OAuth2 → URL Generator**: scopes `bot` + `applications.commands`; permissions:
-   View Channels, Send Messages, Send Messages in Threads, Create Public Threads, Read Message History.
+   View Channels, Send Messages, Send Messages in Threads, Create Public Threads, Manage Threads, Read Message History.
    Or use directly (replace CLIENT_ID):
-   `https://discord.com/oauth2/authorize?client_id=CLIENT_ID&scope=bot+applications.commands&permissions=309237713920`
+   `https://discord.com/oauth2/authorize?client_id=CLIENT_ID&scope=bot+applications.commands&permissions=326417583104`
 5. Optional: enable Developer Mode in Discord, right-click your server → Copy Server ID → `GUILD_ID`
    (global commands can take up to an hour to appear; guild commands are instant).
 
