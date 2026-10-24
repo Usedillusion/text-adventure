@@ -10,6 +10,7 @@ from discord import app_commands
 from discord.ext import tasks
 
 from .config import Config
+from .hints import default_db
 from .zsession import ZSession, list_games, split_for_discord
 
 log = logging.getLogger("textadv")
@@ -19,6 +20,7 @@ intents = discord.Intents.default()
 intents.message_content = True
 client = discord.Client(intents=intents)
 tree = app_commands.CommandTree(client)
+hint_db = default_db()
 sessions: dict[int, ZSession] = {}  # keyed by owner user id
 
 
@@ -112,6 +114,44 @@ def _simple(name: str, desc: str, method: str):
 _simple("save", "Save your game (one slot per game, follows you across servers)", "save")
 _simple("restore", "Restore your saved game for the title you're playing", "restore")
 _simple("restart", "Restart your current game", "restart")
+
+
+def _fmt_hint(heading: str, levels: list[str], i: int) -> str:
+    body = levels[i]
+    last = i == len(levels) - 1
+    if last and "||" not in body and len(levels) > 1:
+        body = f"||{body}||"
+    tag = "Solution" if last and len(levels) > 1 else f"Hint {i + 1}/{len(levels)}"
+    return f"**{heading}**\n{tag}: {body}"[:1990]
+
+
+class HintView(discord.ui.View):
+    def __init__(self, owner: int, heading: str, levels: list[str]):
+        super().__init__(timeout=600)
+        self.owner, self.heading, self.levels, self.i = owner, heading, levels, 0
+        self.more.disabled = len(levels) <= 1
+
+    @discord.ui.button(label="More hint", style=discord.ButtonStyle.primary)
+    async def more(self, inter: discord.Interaction, button: discord.ui.Button):
+        if inter.user.id != self.owner:
+            await inter.response.send_message("Use /hint for your own game.", ephemeral=True); return
+        self.i = min(self.i + 1, len(self.levels) - 1)
+        if self.i == len(self.levels) - 1:
+            button.disabled = True
+            button.label = "That's everything"
+        await inter.response.edit_message(content=_fmt_hint(self.heading, self.levels, self.i), view=self)
+
+
+@tree.command(name="hint", description="Get a progressive hint for the room you're in (only you see it)")
+async def hint_cmd(inter: discord.Interaction):
+    s = sessions.get(inter.user.id)
+    if not s:
+        await inter.response.send_message("You have no game running. Start one with /play.", ephemeral=True); return
+    await inter.response.defer(ephemeral=True, thinking=True)
+    room = await s.current_room()
+    heading, levels, _ = hint_db.lookup(s.game_name, room)
+    await inter.followup.send(_fmt_hint(heading, levels, 0),
+                              view=HintView(inter.user.id, heading, levels), ephemeral=True)
 
 
 @tree.command(name="quit", description="End your game")

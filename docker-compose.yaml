@@ -16,9 +16,11 @@ services:
       SESSION_IDLE_MINUTES: "30"
       USE_THREADS: "true"
       TZ: Europe/London
+      # HINTS_DIR: /data/hints     # optional custom hints (falls back to bundled)
     volumes:
-      - /mnt/<pool>/apps/text-adventure/games:/data/games
-      - /mnt/<pool>/apps/text-adventure/saves:/data/saves
+      - /mnt/<pool>/text-adventure/games:/data/games
+      - /mnt/<pool>/text-adventure/saves:/data/saves
+      # - /mnt/<pool>/text-adventure/hints:/data/hints:ro
     security_opt: [no-new-privileges:true]
     cap_drop: [ALL]
     mem_limit: 256m

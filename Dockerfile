@@ -11,6 +11,7 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 COPY bot ./bot
 COPY scripts ./scripts
+COPY hints ./hints
 COPY tests ./tests
 RUN mkdir -p /data/games /data/saves && chown -R ${UID}:${GID} /data /app
 ENV GAMES_DIR=/data/games SAVES_DIR=/data/saves PYTHONUNBUFFERED=1

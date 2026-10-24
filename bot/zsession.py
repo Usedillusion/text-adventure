@@ -8,6 +8,8 @@ import time
 from pathlib import Path
 
 GAME_EXTS = (".z1", ".z2", ".z3", ".z4", ".z5", ".z6", ".z7", ".z8", ".zblorb", ".zlb")
+# dfrotz status line: " West of House          Score: 0   Moves: 3" (or a time for Z3 timed games)
+_STATUS = re.compile(r"^\s?(\S.*?)\s{2,}(?:Score:|\d+/\d+|Time:|\d{1,2}:\d\d)", re.M)
 _FILENAME_PROMPT = re.compile(r"(file ?name|filename).*[:>?]\s*$", re.I | re.S)
 
 
@@ -28,6 +30,7 @@ class ZSession:
         self.save_dir = Path(save_dir)
         self.game_name = self.game.stem.lower()
         self.save_name = f"{self.game_name}.qzl"
+        self.room: str | None = None
         self.owner_id: int | None = None
         self.channel_id: int | None = None
         self.dfrotz = dfrotz
@@ -72,7 +75,11 @@ class ZSession:
                 break
             buf += chunk
         self.last_active = time.monotonic()
-        return clean(buf.decode("utf-8", "replace"))
+        text = clean(buf.decode("utf-8", "replace"))
+        r = detect_room(text)
+        if r:
+            self.room = r
+        return text
 
     async def send(self, line: str) -> str:
         async with self.lock:
@@ -118,6 +125,12 @@ class ZSession:
             out = await self.send("y")
         return out
 
+    async def current_room(self) -> str | None:
+        """Room from the latest output; fall back to a silent LOOK only if unknown."""
+        if self.room is None and self.alive:
+            await self.send("look")
+        return self.room
+
     async def close(self) -> None:
         if self.proc and self.proc.returncode is None:
             try:
@@ -125,6 +138,14 @@ class ZSession:
             except ProcessLookupError:
                 pass
             await self.proc.wait()
+
+
+def detect_room(text: str) -> str | None:
+    """Room name from the last status line in the output, else None."""
+    found = None
+    for m in _STATUS.finditer(text):
+        found = m.group(1).strip()
+    return found
 
 
 def clean(text: str) -> str:

@@ -2,7 +2,8 @@
 Usage: python -m tests.harness [games_dir]   (interactive: add -i)"""
 import asyncio, sys, tempfile
 from pathlib import Path
-from bot.zsession import ZSession, list_games, split_for_discord
+from bot.hints import HintDB, BUNDLED, norm
+from bot.zsession import detect_room, ZSession, list_games, split_for_discord
 
 
 async def scripted(games_dir: str) -> int:
@@ -44,7 +45,42 @@ async def scripted(games_dir: str) -> int:
     if "advent" in games:
         v = mk(alice, "advent"); await v.start()
         assert "building" in (await v.send("enter building")).lower(); await v.close()
+    await hint_tests(games, root)
     print("\nALL TESTS PASSED"); return 0
+
+
+async def hint_tests(games, root) -> None:
+    db = HintDB(None, BUNDLED)
+    s = ZSession(games["zork1"], root / "hint")
+    await s.start(); assert s.room == "West of House", s.room
+    walk = [("north", "North of House"), ("east", "Behind House"), ("open window", "Behind House"),
+            ("west", "Kitchen"), ("west", "Living Room"), ("take lamp", "Living Room"),
+            ("move rug", "Living Room"), ("open trap door", "Living Room"), ("turn on lamp", "Living Room"),
+            ("down", "Cellar"), ("north", "Troll Room")]
+    for cmd, want in walk:
+        await s.send(cmd)
+        assert norm(s.room) == norm(want), (cmd, s.room, want)
+        head, levels, specific = db.lookup("zork1", s.room)
+        assert specific and len(levels) >= 1, (s.room, head)
+        print(f"  {cmd:15s} -> room={s.room!r:18} hints={len(levels)}  first: {levels[0][:60]}")
+    await s.close()
+    # silent-look fallback when room unknown
+    s = ZSession(games["zork1"], root / "hint"); await s.start(); s.room = None
+    assert await s.current_room() == "West of House"; await s.close()
+    # alias, boat suffix, unknown room -> general
+    assert db.lookup("zork1", "Reservoir North")[2]
+    assert db.lookup("zork1", "Frigid River, in the magic boat")[2]
+    h, lv, sp = db.lookup("zork1", "Nowhere Special"); assert not sp and lv and "general" in h
+    assert not db.lookup("nosuchgame", "x")[2]
+    for g in ("zork1", "zork2", "zork3", "advent"):
+        d = db._load(g); assert d["general"], g
+        for k, v in d["aliases"].items(): assert v in d["rooms"], (g, k, v)
+        print(f"  {g}: {len(d['rooms'])} rooms, {len(d['general'])} general hints")
+    if "advent" in games:
+        a = ZSession(games["advent"], root / "hint"); await a.start(); await a.send("enter building")
+        assert a.room == "Inside Building", a.room
+        assert db.lookup("advent", a.room)[2]; await a.close()
+    assert detect_room(" Kitchen                       Score: 10       Moves: 5\n\nKitchen") == "Kitchen"
 
 
 async def interactive(games_dir: str, name: str):

@@ -1,0 +1,186 @@
+# Original hint text for Zork I. Each room lists hints from gentle to explicit;
+# the last entry is the full solution (shown spoilered).
+# Keys are room names as shown in the status line (case-insensitive).
+game: Zork I
+aliases:
+  forest: forest path
+  canyon bottom: canyon view
+  rocky ledge: canyon view
+  reservoir south: reservoir
+  reservoir north: reservoir
+  dam lobby: maintenance room
+  dead end: maze
+  north-south passage: chasm
+  ladder top: shaft room
+  ladder bottom: coal mine
+  timber room: drafty room
+  smelly room: gas room
+  narrow passage: mirror room
+  inside the barrow: stone barrow
+  end of rainbow: on the rainbow
+  aragain falls: on the rainbow
+  sandy cave: sandy beach
+  white cliffs beach: frigid river
+  shore: frigid river
+  temple: altar
+general:
+  - Most progress comes from examining things, reading anything with writing on it, and trying every exit.
+  - The white house is your base. Treasures are only scored properly once they are placed in the trophy case in the living room.
+  - Light is precious. The brass lantern runs down over time, so turn it off when you're above ground and don't need it.
+  - The thief who wanders the underground is annoying but useful. You don't have to beat him straight away.
+  - There are nineteen treasures in total. When every one is in the trophy case, something new appears inside the case.
+rooms:
+  west of house:
+    - The mailbox is worth a look, but you won't get into the house through the front door.
+    - Walk around the outside of the house and look at every side.
+    - "Behind the house there's a window you can open: ||go north, east, OPEN WINDOW, then WEST to climb into the kitchen||."
+  north of house:
+    - Keep circling the house. One side has a way in.
+    - The back of the house is the interesting side.
+    - "||Go EAST to Behind House, OPEN WINDOW, then go WEST into the kitchen.||"
+  behind house:
+    - That window isn't as shut as it looks.
+    - Try opening it, then go through.
+    - "||OPEN WINDOW, then WEST (or ENTER WINDOW).||"
+  kitchen:
+    - There's food and water here that other characters may like more than you do.
+    - The stairs go up into darkness. Bring light before you explore up there.
+    - "||Take the sack (lunch and garlic) and the bottle of water. Light the lamp from the living room, then go UP to the attic for the rope and knife.||"
+  attic:
+    - It's dark up here. You need the lamp switched on.
+    - "There are two useful items here: one for fighting, one for climbing."
+    - "||TAKE ROPE and TAKE KNIFE. The rope is for the Dome Room later on.||"
+  living room:
+    - The trophy case is where treasures go. The sword and lamp are essential, so take them.
+    - That oriental rug is covering something.
+    - "||TAKE LAMP, TAKE SWORD, MOVE RUG, OPEN TRAP DOOR, TURN ON LAMP, then DOWN.||"
+  cellar:
+    - Someone has shut the trap door behind you. You'll need another way back to the house eventually.
+    - The way out is past a one-eyed resident far to the north-east, which opens up a new route home.
+    - "||Get past the Troll Room and continue to the Cyclops Room. Once the cyclops is dealt with, the Strange Passage leads back to the living room.||"
+  troll room:
+    - The troll won't let you pass peacefully. You need a weapon in hand.
+    - The sword from the living room is the right tool. It may take several swings.
+    - "||ATTACK TROLL WITH SWORD repeatedly until it dies. Save first (/save) in case it goes badly.||"
+  east-west passage:
+    - This passage links the troll area with the round room and the deeper caves.
+  round room:
+    - "This is a hub: the Loud Room, the Egyptian/Temple area and the Dome Room all branch off from here."
+    - Visit each branch in turn, and save before trying anything risky.
+  loud room:
+    - Everything you say comes back at you. Maybe that's the answer.
+    - The acoustics react to one particular word.
+    - "||Type ECHO. The room goes quiet and you can take the platinum bar.||"
+  dam:
+    - This control panel needs power, and the bolt needs a tool.
+    - The tool and the power both come from rooms just north of here.
+    - "||In the Maintenance Room, PUSH YELLOW BUTTON and TAKE WRENCH. Back at the dam, TURN BOLT WITH WRENCH. The sluice gates open and the reservoir drains.||"
+  maintenance room:
+    - Lots of buttons. Some are helpful and some cause trouble (avoid the one that floods the room).
+    - The yellow button powers the dam controls. Take the wrench, screwdriver and tube too.
+    - "||PUSH YELLOW BUTTON, TAKE WRENCH, TAKE SCREWDRIVER. Don't push the blue button.||"
+  reservoir:
+    - It's hard to cross while it's full.
+    - Drain it with the dam controls, then come back and look around the muddy bed.
+    - "||After TURN BOLT WITH WRENCH at the dam, walk across the reservoir bed: there's a trunk of jewels. On the north side is an air pump, which you need for the boat.||"
+  dam base:
+    - That pile of plastic is more useful than it looks.
+    - You need something to fill it with air. It's across the reservoir to the north.
+    - "||With the air pump from Reservoir North: INFLATE PLASTIC WITH PUMP, drop anything sharp, BOARD BOAT, LAUNCH.||"
+  frigid river:
+    - Keep an eye out for floating objects and for a place to land before the falls.
+    - Grab the red buoy as it drifts past, and land on the eastern shore.
+    - "||TAKE BUOY (open it for an emerald), then LAND at Sandy Beach. Take the shovel and go to Sandy Cave and DIG IN SAND a few times for the scarab. Never go over Aragain Falls in the boat.||"
+  sandy beach:
+    - There's a tool here, and a cave nearby with soft ground.
+    - "||TAKE SHOVEL, go NE to Sandy Cave, DIG IN SAND (repeat) until you find the scarab.||"
+  cyclops room:
+    - Fighting the cyclops is hopeless. Think about who famously outwitted a cyclops.
+    - Saying a certain hero's name terrifies it. Alternatively, feed it and give it something to drink.
+    - "||Type ODYSSEUS (or ULYSSES). The cyclops flees and smashes the east wall, which opens the Strange Passage to the living room. Alternatively GIVE LUNCH TO CYCLOPS, then GIVE WATER TO CYCLOPS, and it falls asleep.||"
+  strange passage:
+    - This is your new shortcut between the house and the deep caves.
+  treasure room:
+    - This is the thief's lair. He fights hard here.
+    - Get stronger first (score goes up with treasures), save, and bring the best weapon you have.
+    - "||ATTACK THIEF WITH KNIFE (or sword) repeatedly. When he dies, everything he stole turns up here, including the opened egg and the chalice.||"
+  up a tree:
+    - The nest holds a treasure, but it's delicate and you can't open it safely yourself.
+    - Someone underground has the skills to open it without breaking anything.
+    - "||TAKE EGG. Let the thief steal it (or GIVE EGG TO THIEF). He opens it, and you get it back with the canary when you defeat him in the Treasure Room.||"
+  forest path:
+    - "There's a climbable tree here. Later, a clockwork songbird will sing for you out in the forest."
+    - "||CLIMB TREE for the egg. Once you have the opened egg's golden canary, come back to the forest and WIND CANARY. A songbird drops a brass bauble.||"
+  clearing:
+    - The pile of leaves is hiding something.
+    - "||MOVE LEAVES to reveal a grating. It's locked from below: open it from the maze side with the skeleton key.||"
+  grating room:
+    - The grate above leads to the forest. It needs unlocking.
+    - "||With the skeleton key from the maze: UNLOCK GRATE WITH KEY, OPEN GRATE, UP.||"
+  maze:
+    - All the rooms look alike. Make your own landmarks.
+    - Drop one cheap item in each room so you can tell them apart, and write down what you find.
+    - "||Dropping items to map it works. The goals in the maze are a skeleton key and a bag of coins near a skeleton, and an exit up through the grating to the clearing. There's also a route to the Cyclops Room.||"
+  dome room:
+    - It's a long drop. You have something that would help you climb down.
+    - "||TIE ROPE TO RAILING, then CLIMB DOWN ROPE to the Torch Room and take the ivory torch.||"
+  torch room:
+    - The torch is both a treasure and a light source that never runs out.
+    - "||TAKE TORCH. Keep naked flames out of the Gas Room.||"
+  altar:
+    - The bell, the book and the candles are needed for a ceremony elsewhere.
+    - Praying here does something unexpected.
+    - "||Take the BELL from the Temple and the BOOK and CANDLES from the Altar. You'll need matches too (from the Dam Lobby). The coffin is too awkward to carry up the stairs, so PRAY here to get transported out.||"
+  egyptian room:
+    - The coffin is valuable, and so is what's inside it.
+    - "||TAKE COFFIN, OPEN COFFIN: the sceptre is inside. Carry the coffin out via the Altar (PRAY).||"
+  entrance to hades:
+    - The spirits block the way. Ordinary force is useless, but an old ritual might work.
+    - "You need bell, book and candle, used in the right order: ring, then light, then read."
+    - "||RING BELL (you drop the candles and the spirits are stunned), TAKE CANDLES, LIGHT MATCH, LIGHT CANDLES WITH MATCH, READ BOOK. The spirits flee. Then go south for the crystal skull.||"
+  land of the living dead:
+    - "||TAKE SKULL. That's the crystal skull treasure.||"
+  on the rainbow:
+    - The rainbow can be made solid with a royal object.
+    - It's the sceptre from the Egyptian coffin.
+    - "||At End of Rainbow (or Aragain Falls), WAVE SCEPTRE. The rainbow turns solid and a pot of gold appears at End of Rainbow.||"
+  canyon view:
+    - From here you can reach the river canyon. Look for the end of the rainbow below.
+    - "||Climb down to Canyon Bottom and go north to End of Rainbow, then WAVE SCEPTRE.||"
+  shaft room:
+    - The basket on the chain can carry things where you can't take them.
+    - Some passages ahead are too narrow for you to carry much.
+    - "||PUT TORCH and SCREWDRIVER (and later the coal) IN BASKET, LOWER BASKET. Go round through the coal mine and collect them at the bottom (Drafty Room).||"
+  coal mine:
+    - This is a maze-like mine. There's fuel here for a machine.
+    - "||Find the pile of coal at the dead end and take it. Pass through the narrow opening empty-handed, then get the coal down via the basket.||"
+  gas room:
+    - The smell is a warning. Naked flames here end badly.
+    - "||Only the electric lamp is safe here, never the torch, candles or matches. Take the sapphire bracelet.||"
+  drafty room:
+    - The opening behind you was too narrow to carry things through. That's why the basket exists.
+    - "||Take the items out of the lowered basket (torch, screwdriver, coal) and go south to the Machine Room.||"
+  machine room:
+    - The machine works on raw material, and it needs a tool to switch on.
+    - Pressure turns one kind of carbon into a far more valuable kind.
+    - "||OPEN LID, PUT COAL IN MACHINE, CLOSE LID, TURN SWITCH WITH SCREWDRIVER, OPEN LID: there's a diamond. Put it in the basket and raise the basket at the top.||"
+  bat room:
+    - The bat hates a certain smell.
+    - "||Carry the garlic from the kitchen sack and the bat leaves you alone. Take the jade figurine.||"
+  mirror room:
+    - The mirror is more than decoration. Touch it.
+    - "||RUB MIRROR to teleport to the other Mirror Room. It's a handy shortcut.||"
+  atlantis room:
+    - "||TAKE TRIDENT. That's the crystal trident treasure.||"
+  gallery:
+    - "||TAKE PAINTING. North of here is the studio, whose chimney leads up to the kitchen if you carry very little.||"
+  studio:
+    - The chimney is a shortcut home, but you can only carry a couple of things up it.
+    - "||Go UP the chimney carrying the lamp plus at most one other item.||"
+  chasm:
+    - Just a passage. Look out for things the thief may have left lying around.
+  stone barrow:
+    - You've finished the great underground empire. The adventure continues in Zork II.
+  stone barrow entrance:
+    - The map from the trophy case leads here.
+    - "||ENTER BARROW (go west) to end the game.||"

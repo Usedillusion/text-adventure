@@ -1,0 +1,46 @@
+game: Adventure
+aliases:
+  below the grate: outside grate
+  in debris room: debris room
+  bird chamber: orange river chamber
+general:
+  - "Collect treasures and bring them back to the building to score."
+  - Magic words written on walls can move you around. Try saying them out loud.
+  - The dwarves throw knives and the pirate steals treasure. Keep moving, and save often.
+  - Your lamp runs out eventually. Fresh batteries can be found later.
+rooms:
+  at end of road:
+    - The building has supplies you'll need.
+    - "||ENTER BUILDING and take the keys, lamp, food and bottle.||"
+  inside building:
+    - "Everything here is useful: light, keys, food and water. Treasures get dropped here to count."
+    - "||TAKE KEYS, TAKE LAMP, TAKE FOOD, TAKE BOTTLE. Later, the word XYZZY brings you back here from the debris room.||"
+  outside grate:
+    - The grate is locked, and you're carrying something that opens it.
+    - "||UNLOCK GRATE WITH KEYS (or UNLOCK GRATE), OPEN GRATE, DOWN.||"
+  debris room:
+    - Read the note on the wall. It's a magic word.
+    - "||Pick up the black rod. Say XYZZY to travel back and forth between here and the building.||"
+  orange river chamber:
+    - The bird is nervous around something you might be carrying.
+    - "||Drop the rod, take the cage from the Cobble Crawl, then TAKE BIRD. Pick the rod up again afterwards.||"
+  hall of the mountain king:
+    - The snake won't let you pass. Something small and feathered scares it.
+    - "||RELEASE BIRD (DROP BIRD) and the bird drives the snake away.||"
+  hall of mists:
+    - A dwarf may attack. The rod has a use at the fissure to the west.
+    - "||At the east bank of the fissure, WAVE ROD and a crystal bridge appears.||"
+  secret canyon:
+    - "The dragon looks unbeatable, but try anyway, with your bare hands."
+    - "||KILL DRAGON, and when asked whether with your bare hands, answer YES.||"
+  sw side of chasm:
+    - The troll wants payment to cross.
+    - "||THROW a treasure (e.g. the eggs) TO TROLL. Later you can scare him off with the bear.||"
+  ne side of chasm:
+    - The troll wants payment to cross.
+    - "||THROW a treasure TO TROLL.||"
+  barren room:
+    - The bear is hungry, and you brought food.
+    - "||THROW FOOD TO BEAR, then UNLOCK CHAIN WITH KEYS, TAKE CHAIN. The bear follows you and scares off the troll.||"
+  y2:
+    - Hollow voices... There's another magic word around here (PLUGH).

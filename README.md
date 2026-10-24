@@ -13,11 +13,31 @@ Only the owner's (prefixed) messages in that thread drive it; everyone else's ar
 | `/games` | Lists games in `GAMES_DIR`, marking ones you have a save for (only you see it) |
 | `/save` | Saves your current game to `SAVES_DIR/<user id>/<game>.qzl` (one slot per game, overwritten each time) |
 | `/restore` | Loads your save for the game you're playing |
+| `/hint` | Hint for the room you are in, visible only to you. **More hint** reveals stronger hints, ending with the spoilered solution. Falls back to general game hints |
 | `/restart` / `/quit` | Restart / end **your** game. These work from any channel |
 | `>look` | Game input from the owner, in the game's thread. The prefix is `COMMAND_PREFIX` (default `>`); set it empty to use plain messages |
 
 Saves are tied to your Discord user ID, not the channel. You can save in one server, then `/play` the
 same game in another channel or server and carry on. Idle games are autosaved and closed after `SESSION_IDLE_MINUTES`.
+
+### Hints
+Hint files are `hints/<game>.yaml`, where `<game>` is the game file's name without the extension (e.g. `zork1`).
+The bundled files cover Zork I in depth, Zork II, Zork III and Adventure more lightly, all with
+original text. The current room comes from the game's status line in the latest output; if that's
+missing, the bot sends a silent `look`. Room names are matched case-insensitively, and a leading "The"
+and any ", in the boat"-style suffix are ignored. To add or override hints, set `HINTS_DIR`
+(e.g. mount `/mnt/<pool>/text-adventure/hints` to `/data/hints`). Files there take priority over the
+bundled ones.
+```yaml
+game: Zork I
+aliases: {dam lobby: maintenance room}   # extra room names that share another room's hints
+general: [ "nudge used when the room has no entry" ]
+rooms:
+  troll room:
+    - gentle nudge
+    - stronger hint
+    - full solution          # the last level is shown inside ||spoilers||
+```
 
 ## 1. Create the Discord bot
 1. https://discord.com/developers/applications → **New Application**.
@@ -32,7 +52,7 @@ same game in another channel or server and carry on. Idle games are autosaved an
 
 ## 2. Get games
 ```sh
-./scripts/fetch_games.sh /mnt/<pool>/apps/text-adventure/games
+./scripts/fetch_games.sh /mnt/<pool>/text-adventure/games
 ```
 Downloads Zork I–III (MIT-licensed by Microsoft, github.com/historicalsource) and Adventure
 (`advent.z5`, freeware, IF Archive). Any other `.z5/.z8/.zblorb` you're allowed to use can be dropped in;
@@ -62,8 +82,8 @@ git push -u origin main
 ```
 
 ## 4. Deploy on TrueNAS SCALE (24.10+ / Docker-based apps)
-1. Create `/mnt/<pool>/apps/text-adventure/{games,saves}` and give them to the apps user:
-   `chown -R 568:568 /mnt/<pool>/apps/text-adventure`
+1. Create `/mnt/<pool>/text-adventure/{games,saves}` and give them to the apps user:
+   `chown -R 568:568 /mnt/<pool>/text-adventure`
 2. Fetch games into `.../games` (step 2) from the TrueNAS shell.
 3. Apps → Discover Apps → ⋮ → **Install via YAML**, paste `docker-compose.yaml`, replace `<pool>` and
    the token, save. The logs should show `Logged in as ...`.

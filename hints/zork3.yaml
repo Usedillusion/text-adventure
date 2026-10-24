@@ -1,0 +1,19 @@
+game: Zork III
+general:
+  - This game is less about treasure and more about proving yourself worthy. The score counts the trials you complete.
+  - Strangers and odd old men may be more helpful than they seem. Be kind, and pay attention.
+  - Your lamp won't last forever. Turn it off when you can.
+rooms:
+  endless stair:
+    - You can't go back up. Explore down here.
+  land of shadow:
+    - "A hooded figure challenges you. Winning the fight matters, but showing mercy matters too."
+    - "||Defeat the figure but don't kill it when it's helpless. Take its hood/cloak instead.||"
+  scenic vista:
+    - The table and its images let you look into, and visit, other places. Timing matters.
+    - Try touching the table when different scenes are showing.
+  royal puzzle:
+    - This is a sliding-block puzzle made of sandstone walls. Pushing walls moves them. Map it carefully on paper.
+    - Save before every big change. There is a book to recover and a way back out.
+  aqueduct view:
+    - "Some places only make sense if you think about the passage of time."

@@ -1,0 +1,28 @@
+game: Zork II
+general:
+  - Your lamp is limited again, so use it carefully. A hidden Wizard of Frobozz casts annoying (but usually harmless) spells. Wait them out.
+  - Many puzzles involve the residents (dragon, princess, gnome, robot). Watch how they react to you.
+  - Read everything, especially inscriptions and the newspaper.
+rooms:
+  inside the barrow:
+    - Collect the lamp and sword and head into the tunnels. The sword glows when danger is near.
+  carousel room:
+    - The room spins, so your exits come out randomly. Something elsewhere controls the spinning.
+    - A helper who takes orders could press the right control in the machine area.
+    - "||Find the robot in the Low Room and TELL ROBOT \"...\" to give it commands, e.g. tell it to push buttons in the Machine Room until the carousel stops.||"
+  low room:
+    - The robot obeys commands given with TELL ROBOT "..." or ROBOT, ....
+  dragon room:
+    - Fighting the dragon head-on is fatal. It does follow anyone who provokes it, though.
+    - Think about where its fire breath could be useful.
+    - "||Hit the dragon, retreat, and repeat to lead it to the Ice Room. It melts the glacier (and itself), which opens a new passage.||"
+  ice room:
+    - Something very hot would clear this obstacle.
+  volcano bottom:
+    - The balloon needs heat to rise. Its receptacle burns things.
+    - "||Put something flammable (e.g. the newspaper or a book) in the receptacle, light it, then board the balloon to rise up the volcano.||"
+  gazebo:
+    - Have a look at what's on the table. Some of it is useful elsewhere (the newspaper, the teapot).
+  bank of zork:
+    - The bank has curious security. Walking through the light curtains changes where you end up.
+    - Experiment, and save first.
